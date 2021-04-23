@@ -1,10 +1,15 @@
 import React from "react";
-
+import "./App.css"
 const App = () => {
   return (
     <>
-      <h1>Lambda Eats</h1>
-      <p>You can remove this code and create your own header</p>
+      <nav className="nav-bar">
+        <h1 className="company">Lambda Eats</h1>
+        <button className="home">Home</button>
+        <button className="help">Help</button>
+      </nav>
+      
+      
     </>
   );
 };
