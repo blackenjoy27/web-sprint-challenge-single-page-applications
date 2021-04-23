@@ -28,22 +28,25 @@ const App = () => {
   const [disabled, setDisabled] = useState(true);
 
   const updateFormValues = (name,value)=>{
+    const dontCares = ["topping1","topping2","topping3","topping4","special"];
+    if(!dontCares.includes(name)){
+      yup
+      .reach(schema, name)
+      .validate(value) 
+      .then(() => {
+          setFormErrors({
+            ...formErrors,
+            [name]: "",
+          });
+      })
+      .catch((err) => {
+        setFormErrors({
+          ...formErrors,
+          [name]: err.errors[0],
+        });
+      });
+    }
 
-    yup
-    .reach(schema, name)
-    .validate(value) 
-    .then(() => {
-      setFormErrors({
-        ...formErrors,
-        [name]: "",
-      });
-    })
-    .catch((err) => {
-      setFormErrors({
-        ...formErrors,
-        [name]: err.errors[0],
-      });
-    });
 
     setFormValues({...formValues, [name]:value});
   }
