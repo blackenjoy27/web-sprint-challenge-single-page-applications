@@ -1,0 +1,19 @@
+.orderDiv{
+    height:60vh;
+    background-image: url("https://www.wallpapertip.com/wmimgs/29-290640_high-resolution-food-background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    font-size: 3rem;
+    display: flex;
+    flex-flow:column wrap;
+    justify-content: center;
+    align-items: center;
+    color: #f2edd7;
+
+}
+
+button{
+    width: 8rem;
+    height: 2rem;
+}
