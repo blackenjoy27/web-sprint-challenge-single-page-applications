@@ -2,7 +2,7 @@ import React from "react";
 import "../css/form.css"
 
 const Form =(prop)=>{
-    const {value,update,submit} = prop;
+    const {value,update,submit,errors,disabled} = prop;
 
     const onChange = (evt)=>{
         const {name,value, type, checked} = evt.target;
@@ -17,7 +17,7 @@ const Form =(prop)=>{
         <div className="formDiv">
             <h1 className="heading">Build Your Own Pizza</h1>
             <div className="bg-img"></div>
-            <form submit={submitForm} id="pizza-form">
+            <form onSubmit={submitForm} id="pizza-form">
                 <div className="instruction">
                     <h2>Name</h2>
                 </div>
@@ -29,6 +29,7 @@ const Form =(prop)=>{
                         value={value.name}
                         onChange={onChange}
                     />
+                    <div className="error">{errors.name}</div>
                 </label>
                 <div className="instruction">
                     <h2>
@@ -43,6 +44,7 @@ const Form =(prop)=>{
                         <option value="Extra Large">Extra Large</option>
                         <option value="Party Pizza">Party Pizza</option>
                     </select>
+                    <div className="error">{errors.size}</div>
                 </label>
                 <div className="instruction">
                     <h2>
@@ -70,10 +72,12 @@ const Form =(prop)=>{
                     <input
                         id="special-text"
                         type="text"
+                        name="special"
                         value={value.special}
                         onChange={onChange}
                     />
                 </div>
+                <button id="order-button" disabled={disabled}>Add Order</button>
             </form>
         </div>
     )

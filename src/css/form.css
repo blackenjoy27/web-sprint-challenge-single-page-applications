@@ -1,6 +1,7 @@
 .bg-img{
     background-image: url("https://images.squarespace-cdn.com/content/v1/578ea3a92994ca6eb427c480/1472672356352-RC8WW7FZLYCJACZWUU4N/ke17ZwdGBToddI8pDm48kFyD7pzB8zoMIVY5aiUuFlp7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z4YTzHvnKhyp6Da-NYroOW3ZGjoBKy3azqku80C789l0jG2lbcDYBOeMi4OFSYem8DMb5PTLoEDdB05UqhYu-xbnSznFxIRsaAU-3g5IaylIg/vegetables-background-000046272610_full1.jpg?format=1500w");
     height: 40vh;
+    margin-bottom: 1rem;
 }
 
 .formDiv{
@@ -47,6 +48,12 @@ input{
 
 #special-text{
     margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.error{
+    color:red;
+    margin-top: -1rem;
     margin-bottom: 1rem;
 }
 

@@ -1,8 +1,10 @@
-import React, {useState}from "react";
+import React, {useState, useEffect}from "react";
 import "./App.css"
 import {Route,Link,Switch} from "react-router-dom";
 import Home from "./components/Home";
 import Form from "./components/Form"
+import schema from "./schemaFormat";
+import * as yup from "yup";
 
 const formInitialValue = {
   name:"",
@@ -14,14 +16,38 @@ const formInitialValue = {
   special:""
 }
 
+const formErrorValues = {
+  name:"",
+  size:""
+}
 
 const App = () => {
 
   const [formValues, setFormValues] = useState(formInitialValue);
+  const [formErrors, setFormErrors] = useState(formErrorValues);
+  const [disabled, setDisabled] = useState(true);
 
   const updateFormValues = (name,value)=>{
+
+    yup
+    .reach(schema, name)
+    .validate(value) 
+    .then(() => {
+      setFormErrors({
+        ...formErrors,
+        [name]: "",
+      });
+    })
+    .catch((err) => {
+      setFormErrors({
+        ...formErrors,
+        [name]: err.errors[0],
+      });
+    });
+
     setFormValues({...formValues, [name]:value});
   }
+
 
   const submitForm = ()=>{
     const newOrder = {
@@ -33,7 +59,16 @@ const App = () => {
       topping4: formValues.topping4,
       special: formValues.special
     }
+    console.log(newOrder);
+    setFormValues(formInitialValue);
   }
+
+  useEffect(() => {
+    schema.isValid(formValues).then((valid) => {
+      setDisabled(!valid);
+    });
+  }, [formValues]);
+
   return (
     <>
       <nav className="nav-bar">
@@ -45,7 +80,7 @@ const App = () => {
       </nav>
       <Switch>
         <Route path="/pizza">
-          <Form value={formValues} update={updateFormValues} submit={submitForm}/>
+          <Form value={formValues} update={updateFormValues} submit={submitForm} errors={formErrors} disabled={disabled}/>
         </Route>
         <Route path="/">
             <Home/>
